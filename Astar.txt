@@ -1,0 +1,21 @@
+CSC384 Assignment 1 Astar Questions
+Q1. Suppose you want to use A* and you have a heuristic that may overestimate or underestimate
+cost to the goal by as much as 20%. Can you do anything to guarantee the algorithm will find
+the optimal solution (if one exists)?
+
+A1: A* is optimal if the heuristic never overestimates the cost of the path. You can offset the
+20% estimation inaccuracy by linearly scaling the cost (g(n)) of each state/node to increase g(n).
+This should be done so that the heuristic h(n) will always underestimate the cost of the path
+and the relative difference in cost of g(n) of each state/node is always the same between
+states/nodes. Equivelently you could use weighted A* and scale down the heuristic's effect on
+the f(n) calculation where f(n) = g(n) + weight*h(n).
+
+Q2. (True or False) Assume you you are playing Lunar Lockout on a board that has three xanadus.
+The sum of the Manhattan distances between each xanadu and the exit is an admissible heuristic
+for this problem, should you use A-star to solve it.
+
+A2: False.  The sum of the Manhattan distances between each xanadu and the exit is not an admissible
+heuristic because cumulative Manhattan distance in almost all situations is greater than moves
+required to finish a game therein overestimating the cost. To illustrate this, the cost of every move
+is equal to 1 meaning that the lowest possible manhattan distance of 3 xanadus is 3 making it
+greater than the cost almost always. You can us A* to solve it with a different heuristic.
